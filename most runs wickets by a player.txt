@@ -1,0 +1,99 @@
+//Array of Structer variables
+//Displaying most runs score by a player and most wickets taken 
+
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct players
+{
+	char name[20];
+	int matches;
+	int runs;
+	int wickets;
+}players;
+void Store_Players(players*,int);
+void Display_Players(players*,int);
+void Highest_Runs(players*,int);
+void Highest_Wickets(players*,int);
+
+void main()
+{
+	players* ptr;
+	int n;
+	printf("\n Please Enter no of players you want to store : ");
+	scanf("%d",&n);
+	ptr =(players*)malloc(n*sizeof(players));
+	
+	Store_Players(ptr,n);
+	Display_Players(ptr,n);
+	Highest_Runs(ptr,n);
+	Highest_Wickets(ptr,n);
+}
+void Store_Players(players* ptr,int t)
+{
+	int i;
+	printf("\n-----------------------Get Data-----------------------");
+	for(i=0;i<t;i++)
+	{
+		printf("\nEnter Name of ptrlayer: ");
+		scanf("%s",&ptr[i].name);
+		printf("Enter Matches ptrlayed  : ");
+		scanf("%d",&ptr[i].matches);
+		printf("Enter Total Runs Score: ");
+		scanf("%d",&ptr[i].runs);
+		printf("Enter Total Wickets taken: ");
+		scanf("%d",&ptr[i].wickets);
+	}
+}
+void Display_Players(players* ptr,int t)
+{
+	int i;
+	printf("\n-----------------------Dislay Data-----------------------");
+
+	for(i=0;i<t;i++)
+	{
+		printf("\n\nName of ptrlayer: %s\n",ptr[i].name);
+		printf("Matches ptrlayed  : %d\n",ptr[i].matches);
+		printf("Total Runs Score: %d\n",ptr[i].runs);
+		printf("Total Wickets taken: %d",ptr[i].wickets);
+	}
+}
+void Highest_Runs(players* ptr,int t)
+{
+	int te=0,i;
+	printf("\n\n-----------------------Highest Runs Scorer-----------------------");
+	for(i=0;i<t;i++)
+	{
+		if(te<ptr[i].runs)
+		{
+			te=ptr[i].runs;
+		}
+	}
+		for(i=0;i<t;i++)
+	{
+		if(te==ptr[i].runs)
+		{
+			printf("\n\nHighest Runs Score by %s\nTotal Runs = %d",ptr[i].name,ptr[i].runs);
+			break;
+		}
+	}
+}
+void Highest_Wickets(players* ptr,int t)
+{
+	int te=0,i;
+	printf("\n\n-----------------------Highest Wickets Taker-----------------------");
+	for(i=0;i<t;i++)
+	{
+		if(te<ptr[i].wickets)
+		{
+			te=ptr[i].wickets;
+		}
+	}
+		for(i=0;i<t;i++)
+	{
+		if(te==ptr[i].wickets)
+		{
+			printf("\n\nHighest Wickets Taken by %s\nTotal Wickets = %d",ptr[i].name,ptr[i].wickets);
+			break;
+		}
+	}
+}
